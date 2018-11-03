@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use Sluggable;
+
+    protected static $sluggable = 'name';
+
     /**
      * The attributes that are mass assignable.
      *

@@ -12,7 +12,8 @@
     "homepage": "https://github.com/jervenclark/roles",
     "keywords": ["Laravel", "Roles"],
     "require": {
-        "illuminate/support": "~5"
+        "illuminate/support": "~5",
+        "jervenclark/slugs": "dev-master",
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",

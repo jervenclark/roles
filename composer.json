@@ -1,0 +1,43 @@
+{
+    "name": "jervenclark/roles",
+    "description": ":description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jerven Clark Chua",
+            "email": "jervenclark@gmail.com",
+            "homepage": "http://github.com/jervenclark"
+        }
+    ],
+    "homepage": "https://github.com/jervenclark/roles",
+    "keywords": ["Laravel", "Roles"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jervenclark\\Roles\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jervenclark\\Roles\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jervenclark\\Roles\\RolesServiceProvider"
+            ],
+            "aliases": {
+                "Roles": "Jervenclark\\Roles\\Facades\\Roles"
+            }
+        }
+    }
+}

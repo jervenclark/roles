@@ -2,6 +2,7 @@
 
 namespace Jervenclark\Roles\Models;
 
+use Jervenclark\Roles\Models\Role;
 use Jervenclark\Slugs\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 

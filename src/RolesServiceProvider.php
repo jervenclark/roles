@@ -2,7 +2,9 @@
 
 namespace Jervenclark\Roles;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Jervenclark\Roles\Models\Permission;
 
 class RolesServiceProvider extends ServiceProvider
 {
@@ -14,9 +16,12 @@ class RolesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
-        }
+        if ($this->app->runningInConsole()) $this->bootForConsole();
+        Permission::get()->map(function($permission){
+            Gate::define($permission->slug, function($user) use ($permission){
+                return $user->hasPermissionTo($permission);
+            });
+        });
     }
 
     /**

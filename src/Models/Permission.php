@@ -33,4 +33,18 @@ class Permission extends Model
         return $this->belongsToMany(Role::class);
     }
 
+    /**
+     * Add query scope based on slug
+     *
+     *
+     * @param $query
+     * @param $permission
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSlug($query, $permission)
+    {
+        $slug = is_string($permission) ? $permission : $permission->slug;
+        return $query->where('slug', $slug);
+    }
+
 }

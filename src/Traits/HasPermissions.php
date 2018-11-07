@@ -64,10 +64,46 @@ trait HasPermissions {
      *
      * @return boolean
      */
-    public function hasPermissionThroughRole($permission) {
+    public function hasPermissionThroughRole($permission)
+    {
         foreach ($permission->roles as $role){
             if($this->roles->contains($role)) return true;
         }
         return false;
+    }
+
+    /**
+     * Give model permissions to do action
+     *
+     * @param $permission
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function givePermissions(... $permissions)
+    {
+        $permissions = $this->getAllPermissions($permissions);
+        if($permissions === null) return $this;
+        $this->permissions()->saveMany($permissions);
+        return $this;
+    }
+
+    /**
+     * Get all permissions
+     *
+     * @return array
+     */
+    public function getAllPermissions(array $permissions)
+    {
+        return Permission::whereIn('slug',$permissions)->get();
+    }
+
+    /**
+     * Remove specific permissions for model
+     *
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function deletePermissions( ... $permissions ) {
+        $permissions = $this->getAllPermissions($permissions);
+        $this->permissions()->detach($permissions);
+        return $this;
     }
 }

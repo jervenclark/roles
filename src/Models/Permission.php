@@ -5,7 +5,7 @@ namespace Jervenclark\Roles\Models;
 use Jervenclark\Slugs\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Permission extends Model
 {
     use Sluggable;
 
@@ -21,15 +21,16 @@ class Role extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'level'];
+    protected $fillable = ['name', 'description'];
 
     /**
-     * Role permissions
+     * Permission roles
      *
      * @return void
      */
-    public function permissions()
+    public function roles()
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Role::class);
     }
+
 }
